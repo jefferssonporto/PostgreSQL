@@ -1,0 +1,8 @@
+/*Consulta 01 pode ser reescrita conforme a seguir:*/ 
+SELECT CODIGOALUNO AS "Matrícula",
+NOME AS "Nome do discente",
+DTNASCIMENTO AS "Data de nascimento"
+FROM ALUNO;
+
+/*Consulta 01 */
+SELECT * FROM ALUNO;
