@@ -1,0 +1,25 @@
+HORAS E DATAS
+/* Função	O que retorna?
+current_date	data de hoje
+current_time	hora do dia
+current_timestamp	data e a hora
+extract (campo from fonte)	subcampos de data e hora: século, ano, dia, mês */ 
+SELECT current_date AS "Data Atual",
+        current_time AS "Hora Atual",
+        current_timestamp "Data e Hora Atuais",
+        extract (DOY FROM current_date) AS "Dia do ano",
+        extract (DOW FROM current_date) AS "Dia da semana",
+        extract (DAY FROM current_date) AS "Dia da Atual",
+        extract (MONTH FROM current_date) AS "Mês Atual",
+        extract (YEAR FROM current_date) AS "Ano atual",
+        extract (CENTURY FROM current_date) AS "Século Atual";
+        
+/*EXIBINDO O NOME DO DIA DA SEMANA */
+SELECT CASE WHEN extract (DOW FROM current_date) = 0 THEN 'Domingo'
+SELECT CASE WHEN extract (DOW FROM current_date) = 1 THEN 'Segunda'
+SELECT CASE WHEN extract (DOW FROM current_date) = 2 THEN 'Terça'
+SELECT CASE WHEN extract (DOW FROM current_date) = 3 THEN 'Quarta'
+SELECT CASE WHEN extract (DOW FROM current_date) = 5 THEN 'Quinta'
+SELECT CASE WHEN extract (DOW FROM current_date) = 6 THEN 'Sexta'
+SELECT CASE WHEN extract (DOW FROM current_date) = 7 THEN 'Sabado'
+End AS "Nome do dia da Semana";

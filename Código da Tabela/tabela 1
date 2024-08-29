@@ -1,21 +1,112 @@
-crate table ALUNO (
-	CODIGOALUNO int NOT NULL,
-	NOME varchar(90) NOT NULL,
-	SEXO char(1) NOT NULL,
-	DTNASCIMENTO date (30) NOT NULL,
-	EMAIL varchar(30) NULL,
-	CONSTRAINT ALUNO_pk PRIMARY KEY (codigoALUNO));
-INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMNETO, EMAIL) VALUES ( 1, 'JOSÉ FRANCISCO TERAA', 'M', '28/10/1989', 'JFT@GMAIL.COM');
-INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO, EMAIL) VALUES ( 2, 'ANDREY COSTA FILHO', 'M', '20/10/1999', 'ANDREYCF@HOTMAIL.COM');
-INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO, EMAIL) VALUES ( 3, 'PATRICIA TORRES LOUREIRO', 'F', '20/10/1980', 'PTORRES@GMAIL.COM');
-INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO, EMAIL) VALUES ( 4, 'CARLA MARIA MACIEL', 'F', '20/11/2001', 'NULL');
-INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO, EMAIL) VALUES ( 5, 'LEILA SANTANA COSTA', 'F', '20/11/2001', 'NULL');
+CREATE TABLE ALUNO (
+CODIGOALUNO int NOT NULL,
+NOME varchar(90) NOT NULL,
+SEXO char(1) NOT NULL,
+DTNASCIMENTO date NOT NULL,
+EMAIL varchar(30) NULL,
+CONSTRAINT ALUNO_pk PRIMARY KEY (CODIGOALUNO));
+INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO,EMAIL) VALUES (1,'JOSÉ FRANCISCO
+TERRA','M','28/10/1989','JFT@GMAIL.COM');
+INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO,EMAIL) VALUES (2,'ANDREY COSTA
+FILHO','M','20/10/1999','ANDREYCF@HOTMAIL.COM');
+INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO,EMAIL) VALUES (3,'PATRÍCIA TORRES LOUREIRO','F','20/10/1980',
+'PTORRES@GMAIL.COM');
+INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO,EMAIL) VALUES (4,'CARLA MARIA MACIEL','F','20/11/1996',NULL);
+INSERT INTO ALUNO (CODIGOALUNO, NOME, SEXO, DTNASCIMENTO,EMAIL) VALUES (5,'LEILA SANTANA COSTA','F','20/11/2001',NULL);Consulta 01
+SELECT * FROM ALUNO;
 
-/*Consulta 01 pode ser reescrita conforme a seguir:*/ 
+
+
+/* Consulta 01 Exibir todas as informações dos alunos.*/
+SELECT * FROM ALUNO;
+
+/* Retornar o código, o nome e a data de nascimento de todos os alunos. */
+SELECT CODIGOALUNO, NOME, DTNASCIMENTO
+FROM ALUNO;
+
+/*Consulta 02 pode ser reescrita conforme a seguir:*/ 
 SELECT CODIGOALUNO AS "Matrícula",
 NOME AS "Nome do discente",
 DTNASCIMENTO AS "Data de nascimento"
 FROM ALUNO;
 
-/*Consulta 01 */
-SELECT * FROM ALUNO;
+ /*Comando para remover a tabela ALUNO */
+DROP TABLE ALUNO; DROP TABLE <NOMETABELA>;
+
+/* sintaxe básica do comando ALTER TABLE: */ 
+ALTER TABLE <NOMETABELA> ADD <COLUNA><TIPODEDADOS> ;
+
+
+/* Comando para alterar a tabela CURSO, adicionando coluna DTRECONH */
+ALTER TABLE CURSO ADD DTRECONH DATE;
+
+/*Comando para alterar a tabela CURSO, removendo a coluna DTRECONH */ 
+ALTER TABLE ALUNO DROP DTRECONH ;
+
+/* Remover uma coluna da Tabela */ 
+ALTER TABLE <NOMETABELA> DROP <COLUNA> ;
+
+/* Exemplo */ 
+CREATE TABLE NOMETABELA (
+COLUNA1 - TIPODEDADOS [RESTRIÇÃO],
+COLUNAN - TIPODEDADOS [RESTRIÇÃO],
+PRIMARY KEY (COLUNA),
+FOREIGN KEY (COLUNA) REFERENCES NOMETABELA (COLUNA)
+CONSTRAINT RESTRIÇÃO);
+
+/* NOMETABELA
+representa o nome da tabela que será criada
+
+COLUNA1 e COLUNAN
+representa a(s) coluna(s) da tabela
+
+TIPODEDADOS
+indica tipo de dados ou domínio da coluna
+
+RESTRIÇÃO
+aponta alguma propriedade associada à coluna em questão. Por exemplo, podemos definir se a coluna é obrigatória ou opcional
+
+PRIMARY KEY
+indica a coluna, ou conjunto de colunas, representativa da chave primária
+
+FOREIGN KEY
+sinaliza a coluna, ou conjunto de colunas, com restrição de chave estrangeira
+
+CONSTRAINT RESTRIÇÃO
+indica alguma restrição que poderá ser declarada */ 
+
+/* Comando para remover a tabela NIVEL - remoção em cascata */ 
+DROP TABLE ALUNO CASCADE;
+
+/* Sintaxe de inserção de linhas em tabela */ 
+INSERT INTO <NOMETABELA> (COLUNA1, COLUNA2,…,COLUNAn) VALUES (VALOR1, VALOR2,…,VALORn);
+
+/* sintaxe básica do comando UPDATE da SQL*/ 
+UPDATE <NOMETABELA>
+SET COLUNA1=VALOR1, COLUNA2=VALOR2,…,COLUNAn=VALORn
+WHERE <CONDIÇÃO>;
+
+/* Remoção de Linhas */
+DELETE FROM <NOMETABELA>
+WHERE <CONDIÇÃO>;
+
+/* sintaxe básica para o comando SELECT */
+SELECT COLUNA1 [[AS] APELIDOCOLUNA1],
+COLUNA2 [[AS] APELIDOCOLUNA2],
+…
+COLUNAN [[AS] APELIDOCOLUNAN]
+FROM TABELA;
+
+/* Calculando idade e faixa etária */
+SELECT NOME, DTNASCIMENTO, AGE (DTNASCIMENTO) AS "IDADE [ANO/MêS/DIA]",
+extract(YEAR FROM AGE(DTNASCIMENTO)) AS "IDADE DO ALUNO" FROM ALUNO;
+
+
+
+
+
+
+
+
+
+
