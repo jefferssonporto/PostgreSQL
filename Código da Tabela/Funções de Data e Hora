@@ -23,3 +23,4 @@ SELECT CASE WHEN extract (DOW FROM current_date) = 5 THEN 'Quinta'
 SELECT CASE WHEN extract (DOW FROM current_date) = 6 THEN 'Sexta'
 SELECT CASE WHEN extract (DOW FROM current_date) = 7 THEN 'Sabado'
 End AS "Nome do dia da Semana";
+
