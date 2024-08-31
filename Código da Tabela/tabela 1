@@ -161,6 +161,77 @@ CASE WHEN extract (YEAR FROM AGE (DTNASCIMENTO)) <=20 THEN '1. até 20 anos'
         WHEN extract (YEAR FROM AGE (DTNASCIMENTO)) > 60 THEN '6. mais de 60 anos'
         END AS "Faixa Etária"   FROM ALUNO;
 
+/* Sintaxe básica para o comando SELECT, com o uso das cláusulas WHERE e ORDER BY */ 
+SELECT COLUNA1 [[AS] APELIDOCOLUNA1],
+COLUNA2 [[AS] APELIDOCOLUNA2],
+…
+COLUNAN [[AS] APELIDOCOLUNAN]
+FROM TABELA
+WHERE <CONDIÇÃO>
+ORDER BY EXPRESSÃO1[ASC|DESC] [NULLS {FIRST|LAST}], [EXPRESSÃO2[ASC|DESC] [NULLS {FIRST|LAST}…];
+
+/* Operador	Significado
+AND	conjunção
+OR	disjunção
+NOT	negação */ 
+
+/* Operador	Significado
+<	menor
+<=	menor ou igual a
+>	maior
+>=	maior ou igual a
+=	igual
+<> ou !=	> diferente*/ 
+
+/*Nome e a data de nascimento das professoras */
+SELECT NOME, DTNASCIMENTO FROM ALUNO WHERE SEXO='F';
+
+/* Nome e a data de nascimento das professoras que fazem aniversário em novembro.*/ 
+SELECT NOME, DTNASCIMENTO FROM ALUNO WHERE SEXO='F' 
+AND extract (MONTH FROM DTNASCIMENTO=11);
+
+/*Nome dos alunos que fazem aniversário no segundo semestre com Operador IN*/ 
+SELECT NOME, DTNASCIMENTO from ALUNO, 
+WHERE extract (MONTH FROM DTNASCIMENTO) IN (7,8,9,10,11,12);
+
+/*Nome dos alunos nascidos entre 1985 e 2005 Utilizando o BETWEEN */ 
+SELECT NOME, DTNASCIMENTO from ALUNO, 
+WHERE extract (YEAR FROM DTNASCIMENTO) BETWEEN 1985 AND 2005;
+
+/* Nome dos alunos que possuem a string COSTA em qualquer parte do nome com o comando LIKE*/ 
+SELECT NOME FROM ALUNO WHERE NOME LIKE '%COSTA%';
+
+/*Mome dos alunos que possuem a letra “A” na segunda posição do nome LIKE*/
+SELECT NOME FROM ALUNO WHERE NOME LIKE '%_A%';
+
+/*Nome e a data de nascimento dos alunos que não possuem a string “MARIA” fazendo parte do nome NOT LIKE*/
+SELECT NOME FROM ALUNO WHERE NOME NOT LIKE '%MARIA%';
+
+/*Alunos QUE possuem conta de e-mail no gmail*/
+SELECT COUNT(*) AS quantidade FROM ALUNO WHERE EMAIL LIKE '%@GMAIL.%';
+
+/*Nome, data de nascimento e o e-mail dos alunos que têm endereço eletrônico cadastrado operador NULL*/
+SELECT NOME, DTNASCIMENTO, EMAIL FROM ALUNO WHERE E-MAIL IS NOT NUL;
+
+/*Nome dos alunos sem e-mail cadastrado no banco de dados NULL*/ 
+SELECT NOME FROM ALUNO WHERE E-MAIL IS NULL;
+
+/*Nome e a data de nascimento dos alunos, ordenando os resultados por nome, de maneira ascendente ORDER BY*/
+SELECT NOME, DTNASCIMENTO FROM ALUNO ORDER BY NOME;
+
+/*Nome e a data de nascimento dos alunos, ordenando os resultados de modo ascendente pelo mês de nascimento e, em seguida, pelo nome, também de modo ascendente ORDER BY*/
+SELECT NOME, DTNASCIMENTO FROM ALUNO ORDER BY extract (month FROM DTNASCIMENTO), NOME; 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
